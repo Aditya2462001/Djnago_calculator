@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <title>Calculator</title>
+    <style>
+        @media only screen and (max-width:340px)
+        {
+            .maincontainer
+            {
+                width: 290px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="maincontainer">
+        <div class="headingCont">
+            <h1 class="heading">Calculator</h1>
+            <button class="theam">B/W</button>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="Number" name="inputone"  placeholder="Enter the First Number" value="{{inp1}}" class="inp1">
+            <input type="Number" name="inputsecond" placeholder="Enter the First Number" value="{{inp2}}" class="inp2">
+            <div class="output">
+              {% if output %}
+                <h2>{{ output }}</h2>
+              {% else %}
+                <h2 class="outputShow">0</h2>
+              {% endif %}
+            </div>
+            <div class="buttons">
+                <div class="firstRow">
+                    <input type="submit" name="sub1" value="+">
+                    <input type="submit" name="sub2" value="-">
+                </div>
+                <div class="secondRow">
+                    <input type="submit" name="sub3" value="*">
+                    <input type="submit" name="sub4" value="/">
+                </div>
+                <div class="thirdRow">
+                    <input type="submit" name="sub5" value="%">
+                </div>
+            </div>
+        </form>
+    </section>
+    <script>
+        const theam = document.querySelector('.theam');
+        const maincontainer = document.querySelector('.maincontainer');
+        theam.addEventListener('click',function ()
+        {
+            
+            if(maincontainer.classList.contains('on'))
+            {
+                maincontainer.classList.remove('on');
+                maincontainer.style.background =null;
+                maincontainer.style.color = null ;
+            }
+            else
+            {
+                maincontainer.classList.add('on');
+                maincontainer.style.background ="#333";
+                maincontainer.style.color = "#fff";
+            }
+            console.log("black");
+
+        })
+    </script>
+</body>
+
+</html>
